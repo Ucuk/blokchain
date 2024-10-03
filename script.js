@@ -1,34 +1,17 @@
-const formUnggah = document.getElementById('form-unggah');
-const tombolUnggah = document.getElementById('tombol-unggah');
-const sertifikatTerensiDiv = document.getElementById('sertifikat-terenkripsi');
+const Web3 = require('web3');
+const contractABI = /* masukkan ABI contract Anda */;
+const contractAddress = '0x...';  // Masukkan alamat contract yang telah di-deploy
 
-tombolUnggah.addEventListener('click', (e) => {
-    e.preventDefault();
-    const fileSertifikat = document.getElementById('file-sertifikat').files[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-        const dataSertifikat = reader.result;
-        // Enkripsi data sertifikat menggunakan teknologi blockchain
-        enkripsiSertifikat(dataSertifikat).then((dataTerensi) => {
-            const sertifikatTerensi = `Sertifikat Terenkripsi: ${dataTerensi}`;
-            sertifikatTerensiDiv.innerHTML = sertifikatTerensi;
-        }).catch((error) => {
-            console.error(error);
-        });
-    };
-    reader.readAsDataURL(fileSertifikat);
-});
+const web3 = new Web3(new Web3.providers.HttpProvider('https://ropsten.infura.io/v3/YOUR_INFURA_PROJECT_ID'));
+const contract = new web3.eth.Contract(contractABI, contractAddress);
 
-async function enkripsiSertifikat(dataSertifikat) {
-    // Ganti dengan API atau SDK platform blockchain Anda
-    const blockchainApi = 'https://api-blockchain-anda.com/enkripsi';
-    const response = await fetch(blockchainApi, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ dataSertifikat })
-    });
-    const dataTerensi = await response.json();
-    return dataTerensi;
+async function storeCertificateHash(fileHash, account) {
+    try {
+        const receipt = await contract.methods.storeCertificateHash(fileHash).send({ from: account });
+        console.log('Transaction receipt: ', receipt);
+    } catch (err) {
+        console.error('Error storing certificate hash: ', err);
+    }
 }
+
+module.exports = { storeCertificateHash };
