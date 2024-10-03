@@ -1,20 +1,51 @@
-<!-- Index.html -->
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unggah Sertifikat dan Enkripsi</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Certificate Encryption on Blockchain</title>
 </head>
 <body>
-    <h1>Unggah Sertifikat dan Enkripsi</h1>
-    <form id="form-unggah">
-        <input type="file" id="file-sertifikat" accept=".pdf, .docx, .jpg, .png">
-        <button id="tombol-unggah">Unggah Sertifikat</button>
+    <h1>Upload and Encrypt Your Certificate</h1>
+    <form id="uploadForm">
+        <input type="file" id="certificate" accept=".pdf,.docx,.jpg,.png" required><br><br>
+        <button type="submit">Encrypt and Upload</button>
     </form>
-    <div id="sertifikat-terenkripsi"></div>
+    
+    <p id="status"></p>
 
-    <script src="script.js"></script>
+    <script src="web3.min.js"></script>
+    <script>
+        const form = document.getElementById('uploadForm');
+        const statusText = document.getElementById('status');
+        
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const fileInput = document.getElementById('certificate').files[0];
+            
+            // Example for reading file and converting to hash
+            const reader = new FileReader();
+            reader.onload = async function(e) {
+                const fileContent = e.target.result;
+                const fileHash = web3.utils.sha3(fileContent); // Menghitung hash file
+
+                // Menyimpan hash di blockchain
+                const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                const account = accounts[0];
+
+                // Panggil smart contract untuk menyimpan hash
+                const contract = new web3.eth.Contract(contractAbi, contractAddress);
+                contract.methods.storeCertificateHash(fileHash).send({ from: account })
+                    .then(receipt => {
+                        statusText.innerHTML = "Certificate stored successfully on blockchain!";
+                    })
+                    .catch(err => {
+                        statusText.innerHTML = "Error: " + err.message;
+                    });
+            };
+
+            reader.readAsArrayBuffer(fileInput);
+        });
+    </script>
 </body>
 </html>
