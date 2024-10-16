@@ -53,8 +53,10 @@ html {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background-color: rgba(255, 255, 255, 0.9); /* Translucent background for better text visibility */
+    justify-content: space-around;
+	gap: 50px;
+    background-color: #FFDEE9;
+    background-image: linear-gradient(135deg, #ebacc1 0%, #7cebe7 100%);
     padding: 20px;
     border-radius: 15px;
     max-width: 1200px;
