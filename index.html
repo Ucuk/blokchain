@@ -1,51 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certificate Encryption on Blockchain</title>
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistem Validasi Sertifikat Berbasis Blockchain</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/spark-md5/3.0.0/spark-md5.min.js"></script>
 </head>
 <body>
-    <h1>Upload and Encrypt Your Certificate</h1>
-    <form id="uploadForm">
-        <input type="file" id="certificate" accept=".pdf,.docx,.jpg,.png" required><br><br>
-        <button type="submit">Encrypt and Upload</button>
-    </form>
+    <!-- navbar -->
+    <div class="navbar">
+        <div class="logo">
+            <img src="logo (2).png" alt="" />
+        </div>
+        <div class="nav">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#cek">Cek Sertifikat</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="info">
+            <img src="blockchain.png" alt="" />
+        </div>
+        <div class="text">
+            <h1>Sistem Validasi Sertifikat Berbasis Blockchain</h1>
+            <p>
+                Perkuat keaslian dan kepercayaan sertifikat Anda melalui sistem validasi
+                berbasis blockchain yang transparan dan tak dapat diubah
+            </p>
+            <p>
+                Validasi Sertifikat yang Aman, Cepat, dan Terpercaya dengan Teknologi
+                Blockchain
+            </p>
+            <button class="cek"><a href="#cek">Cek Sekarang</a></button>
+        </div>
+
+        <p id="status"></p>
+    </div>
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+            fill="#a7d2d8"
+            fill-opacity="1"
+            d="M0,128L21.8,117.3C43.6,107,87,85,131,101.3C174.5,117,218,171,262,213.3C305.5,256,349,288,393,256C436.4,224,480,128,524,101.3C567.3,75,611,117,655,149.3C698.2,181,742,203,785,197.3C829.1,192,873,160,916,176C960,192,1004,256,1047,261.3C1090.9,267,1135,213,1178,208C1221.8,203,1265,245,1309,245.3C1352.7,245,1396,203,1418,181.3L1440,160L1440,0L1418.2,0C1396.4,0,1353,0,1309,0C1265.5,0,1222,0,1178,0C1134.5,0,1091,0,1047,0C1003.6,0,960,0,916,0C872.7,0,829,0,785,0C741.8,0,698,0,655,0C610.9,0,567,0,524,0C480,0,436,0,393,0C349.1,0,305,0,262,0C218.2,0,175,0,131,0C87.3,0,44,0,22,0L0,0Z"
+        ></path>
+    </svg>
     
-    <p id="status"></p>
+    <!-- Pengecekan -->
+    <div id="cek" class="container-cek">
+        <div class="form">
+            <p>Silahkan Masukkan Sertifikat</p>
+            <form id="uploadForm">
+                <input
+                    type="file"
+                    id="sertifikatInput"
+                    accept=".pdf,.docx,.jpg,.png"
+                    required
+                /><br /><br />
+                <button id="uploadBtn" type="submit">Upload dan Validasi</button>
+            </form>
+        </div>
+        <div class="result">
+            <p>Result :</p>
+            <div class="sert">
+                <img id="sertifikatImg" src="sert2.jpg" alt="" />
+            </div>
+            <p class="ket">Hash MD5: <b id="hashResult">-</b></p>
+        </div>
+    </div>
 
-    <script src="web3.min.js"></script>
-    <script>
-        const form = document.getElementById('uploadForm');
-        const statusText = document.getElementById('status');
-        
-        form.addEventListener('submit', async function(event) {
-            event.preventDefault();
-            const fileInput = document.getElementById('certificate').files[0];
-            
-            // Example for reading file and converting to hash
-            const reader = new FileReader();
-            reader.onload = async function(e) {
-                const fileContent = e.target.result;
-                const fileHash = web3.utils.sha3(fileContent); // Menghitung hash file
+    <!-- about-->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+            fill="#183648"
+            fill-opacity="1"
+            d="M0,192L26.7,170.7C53.3,149,107,107,160,74.7C213.3,43,267,21,320,58.7C373.3,96,427,192,480,229.3C533.3,267,587,245,640,224C693.3,203,747,181,800,176C853.3,171,907,181,960,160C1013.3,139,1067,85,1120,80C1173.3,75,1227,117,1280,138.7C1333.3,160,1387,160,1413,160L1440,160L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z"
+        ></path>
+    </svg>
 
-                // Menyimpan hash di blockchain
-                const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-                const account = accounts[0];
+    <div id="about" class="about">
+        <h5>About</h5>
+        <div class="wrapper">
+            <div class="kiri">
+                <img src="about.png" alt="" />
+            </div>
+            <div class="kanan">
+                <p>
+                    Sebagai bagian dari mata kuliah Inovasi Teknologi Jurusan Teknik Informatika dan Komputer Univertas Negeri Makassar
+                </p>
+                <p>
+                    
+					Kelompok kami membuat serta merancang sistem yang dapat di manfaatkan oleh semua orang yang terfokus pada sistem blockchain yaitu Sistem Validasi Sertifikat berbasis Blockchain. 
 
-                // Panggil smart contract untuk menyimpan hash
-                const contract = new web3.eth.Contract(contractAbi, contractAddress);
-                contract.methods.storeCertificateHash(fileHash).send({ from: account })
-                    .then(receipt => {
-                        statusText.innerHTML = "Certificate stored successfully on blockchain!";
-                    })
-                    .catch(err => {
-                        statusText.innerHTML = "Error: " + err.message;
-                    });
-            };
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum nostrum sunt
+                    magnam id modi quidem ea incidunt vero facilis sesuatu.
+                </p>
+            </div>
+        </div>
+    </div>
 
-            reader.readAsArrayBuffer(fileInput);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
