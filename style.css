@@ -73,10 +73,13 @@ html {
 }
 
 .container .text h1 {
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-weight: 700;
+    color: #ffffff;
+    text-align: center;
     margin-bottom: 20px;
-    color: #0071e3;
+    letter-spacing: -1px;
+    font-family: "poppins", sans-serif;
 }
 
 .container .text p {
