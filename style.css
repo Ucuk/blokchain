@@ -1,24 +1,33 @@
+/* CSS Global */
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
 body {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 	background-image: url("foto2.jpg"); /* Ganti dengan URL gambar yang diinginkan */
-	background-size: cover; /* Agar gambar menutupi seluruh layar */
+	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
 	color: #1d1d1f;
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box;
 }
 
+/* Smooth scrolling */
 html {
     scroll-behavior: smooth;
 }
 
+/* Navbar */
 .navbar {
 	height: 50px;
 	background-color: #0071e3;
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	padding: 0 20px;
 }
 
@@ -52,32 +61,34 @@ html {
 	background-color: #ff5090;
 }
 
+/* Container Layout */
 .container {
 	display: flex;
-	flex-wrap: wrap; /* Menambahkan agar elemen bisa melipat di layar kecil */
+	flex-wrap: wrap;
 	justify-content: space-around;
 	gap: 50px;
 	margin: auto;
 	background-color: #FFDEE9;
 	background-image: linear-gradient(135deg, #ebacc1 0%, #7cebe7 100%);
-	height: 92.6vh;
+	height: auto;
 	padding: 20px;
+	align-items: center;
 }
 
 .container .info {
 	width: 50%;
-	margin-top: 100px;
+	margin-top: 50px;
+	text-align: center;
 }
 
 .container .info img {
-	width: 100%; /* Menjadikan gambar responsif */
+	width: 100%;
 	max-width: 600px;
-	margin-left: 40px;
 }
 
 .container .text {
-	margin-top: 100px;
 	width: 50%;
+	text-align: center;
 }
 
 .container .text p {
@@ -86,8 +97,9 @@ html {
 	letter-spacing: -1px;
 }
 
+/* Typography */
 h1 {
-	font-size: 2rem;
+	font-size: 2.5rem;
 	font-weight: 600;
 	color: #ffffff;
 	text-align: center;
@@ -99,14 +111,10 @@ h1 {
 .container .text a {
 	text-decoration: none;
 	color: white;
+	font-size: 1.2rem;
 }
 
-.container-cek {
-	display: flex;
-	height: 100vh;
-	margin-top: 50px;
-}
-
+/* Form Layout */
 form {
 	background-image: url("fo"); /* Tambahkan gambar latar untuk kotak */
 	background-size: cover;
@@ -154,72 +162,113 @@ p#status {
 	font-weight: 400;
 }
 
+/* About Section */
 .about {
-	height: 400px;
+	height: auto;
 	background-color: #183648;
+	padding: 20px;
 }
 
 .about h5 {
 	text-align: center;
-	font-size: 1.2rem;
+	font-size: 1.5rem;
 	color: white;
-	margin-top: -5px;
+	margin-top: 10px;
 }
 
 .about .wrapper {
 	display: flex;
-	flex-wrap: wrap; /* Agar layout melipat pada layar sempit */
+	flex-wrap: wrap;
 	gap: 50px;
-	justify-content: center; /* Tambahan untuk membuat elemen lebih sentral */
+	justify-content: center;
 }
 
 .about .kiri img {
 	width: 100%;
-	max-width: 500px; /* Gambar responsif */
+	max-width: 500px;
 }
 
 .about .wrapper .kanan p {
 	color: white;
+	text-align: justify;
+}
+
+/* Media Queries untuk Responsivitas */
+@media (max-width: 1024px) {
+	.nav ul {
+		gap: 10px;
+	}
+
+	h1 {
+		font-size: 2.2rem;
+	}
+
+	.container .info, .container .text {
+		width: 100%;
+	}
+
+	form {
+		padding: 30px 40px;
+	}
+
+	button {
+		width: 90%;
+		font-size: 16px;
+	}
+
+	.about .wrapper {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.about h5 {
+		font-size: 1.2rem;
+	}
 }
 
 @media (max-width: 768px) {
 	.nav ul {
+		display: none;
+	}
+
+	.navbar {
 		flex-direction: column;
-		align-items: center;
+	}
+
+	.navbar .toggle-menu {
+		display: block;
+		cursor: pointer;
+	}
+
+	.nav ul.mobile {
+		display: flex;
+		flex-direction: column;
 		gap: 10px;
-	}
-	
-	.container {
-		flex-direction: column;
-		gap: 20px;
-		height: auto;
-	}
-	
-	.container .info, .container .text {
+		background-color: #0071e3;
+		position: absolute;
+		top: 50px;
+		left: 0;
 		width: 100%;
-		text-align: center;
-	}
-
-	.container .info img {
-		margin: 0;
-	}
-
-	form {
-		padding: 30px 20px;
 	}
 
 	h1 {
 		font-size: 1.8rem;
 	}
 
-	button {
-		font-size: 16px;
-		width: 90%;
+	form {
+		padding: 20px 30px;
 	}
 
-	.about .wrapper {
-		flex-direction: column;
-		align-items: center;
+	.container {
+		gap: 20px;
+	}
+
+	.container .info img {
+		width: 100%;
+	}
+
+	button {
+		font-size: 14px;
 	}
 }
 
