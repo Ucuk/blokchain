@@ -3,43 +3,43 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: 'Ubuntu', sans-serif;
-}
-
-.container {
-    text-align: center;
-    padding: 50px 20px;
+    background-image: url("foto2.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #1d1d1f;
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
     padding: 10px 20px;
-    background-color: #183648;
+    background-color: #0071e3;
     color: #fff;
 }
 
 .navbar .logo img {
-    width: 150px;
+    width: 50px;
 }
 
 .navbar .nav ul {
     list-style: none;
     display: flex;
     gap: 20px;
-    align-items: center;
-}
-
-.navbar .nav ul li {
-    display: inline;
 }
 
 .navbar .nav ul li a {
     color: #fff;
     text-decoration: none;
-    font-size: 16px;
+    padding: 8px;
+    border-radius: 5px;
 }
 
-/* Adjust layout for mobile screens */
+.navbar .nav ul li a:hover {
+    background-color: #ff5090;
+}
+
+/* Responsive layout */
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
@@ -52,11 +52,13 @@ body, html {
     }
 
     .container {
-        padding: 30px 10px;
+        flex-direction: column;
+        padding: 30px 20px;
     }
 
-    .container-cek, .about {
-        padding: 20px 10px;
+    .container .info img {
+        max-width: 100%;
+        height: auto;
     }
 
     .text h1 {
@@ -67,122 +69,30 @@ body, html {
         font-size: 16px;
     }
 
-    .text button {
-        font-size: 14px;
-        padding: 10px 20px;
-    }
-
-    .form p {
-        font-size: 16px;
-    }
-
-    .result p {
-        font-size: 16px;
-    }
-
-    .sert img {
-        width: 100%;
-    }
-
     .about .wrapper {
         flex-direction: column;
-        text-align: center;
-    }
-
-    .about .kiri, .about .kanan {
-        width: 100%;
     }
 
     .about .kiri img {
         width: 100%;
-    }
-
-    .about p {
-        font-size: 16px;
+        height: auto;
     }
 }
 
-/* Desktop styles */
-@media (min-width: 769px) {
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .container-cek {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .form, .result {
-        width: 48%;
-    }
-
-    .about .wrapper {
-        display: flex;
-        justify-content: space-between;
-        padding: 50px 20px;
-    }
-
-    .about .kiri, .about .kanan {
-        width: 48%;
-    }
-
-    .about p {
-        font-size: 18px;
-    }
+.container-cek {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px;
+    background-color: #f7f7f7;
 }
 
-/* Button and Image styling */
-button.cek a {
-    color: #fff;
-    text-decoration: none;
-}
-
-button.cek {
-    padding: 15px 30px;
-    background-color: #183648;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    font-size: 18px;
-    margin-top: 20px;
-}
-
-button.cek:hover {
-    background-color: #116580;
-}
-
-.result {
-    margin-top: 20px;
+.container-cek .form, .container-cek .result {
+    width: 48%;
 }
 
 .result .sert img {
-    width: 300px;
-    height: auto;
+    width: 100%;
+    max-width: 200px;
 }
 
-.sertifikatImg {
-    max-width: 100%;
-    height: auto;
-}
-
-/* Form Styling */
-form input[type="file"] {
-    font-size: 18px;
-}
-
-form button {
-    padding: 10px 20px;
-    font-size: 18px;
-    background-color: #116580;
-    border: none;
-    color: white;
-    cursor: pointer;
-}
-
-form button:hover {
-    background-color: #183648;
-}
-
+/* Rest of the styles... */
