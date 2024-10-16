@@ -1,271 +1,188 @@
-/* CSS ala Apple Website dengan Background Gambar di Body dan Box */
-body {
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-		"Helvetica Neue", Arial, sans-serif;
-	background-image: url("foto2.jpg"); /* Ganti dengan URL gambar yang diinginkan */
-	background-size: cover; /* Agar gambar menutupi seluruh layar */
-	background-position: center;
-	background-repeat: no-repeat;
-	color: #1d1d1f;
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-.navbar {
-	height: 50px;
-	background-color: #0071e3;
-	display: flex;
-	justify-content: space-between;
-}
-.navbar .logo {
-	margin-left: 30px;
-}
-.navbar img {
-	width: 50px;
-}
-
-.nav {
-	width: 30%;
-	margin-right: 30px;
-}
-
-.nav ul {
-	display: flex;
-	justify-content: space-around;
-}
-.nav ul li {
-	list-style: none;
-}
-.nav ul li a {
-	text-decoration: none;
-	color: white;
-	padding: 8px;
-	border-radius: 5px;
-}
-.nav ul li a:hover {
-	background-color: #ff5090;
+/* Global Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 .container {
-	display: flex;
-	/* border: 1px solid red; */
-	justify-content: space-around;
-	gap: 50px;
-	margin:  auto;
-    background-color: #FFDEE9;
-    background-image: linear-gradient(135deg, #ebacc1 0%, #7cebe7 100%);
-    
-    
-    
-	height: 92.6vh;
-}
-
-.container .info {
-	width: 50%;
-	/* border: 1px solid red; */
-	/* margin-top: 100px; */
-	margin-top: 100px;
-}
-
-.container .info img {
-	width: 600px;
-	margin-left: 40px;
-}
-
-.container .text {
-	margin-top: 100px;
-}
-
-.container .text p {
-	font-size: 1rem;
-	color: rgb(0, 0, 0);
-    letter-spacing: -1;
-}
-
-h1 {
-	font-size: 2rem;
-	font-weight: 600;
-	color: #ffffff; /* Warna teks putih agar kontras dengan latar belakang */
-	text-align: center;
-	margin-bottom: 50px;
-	letter-spacing: -1px;
-    font-family: "poppins", sans-serif;
-}
-
-.container .text a  {
-    text-decoration: none;
-    color: white;
-}
-
-.container-cek {
-    display: flex;
-    height: 100vh;
-    margin-top: 50px;
-}
-
-/* Box atau form dengan background gambar */
-form {
-	background-image: url("fo"); /* Tambahkan gambar latar untuk kotak */
-	background-size: cover; /* Agar gambar menutupi seluruh kotak */
-	background-position: center;
-	background-repeat: no-repeat;
-	padding: 40px 60px;
-	border-radius: 14px;
-	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-	max-width: 100%;
-	text-align: center;
-	color: #ffffff; /* Warna teks putih di dalam form */
-}
-
-.form {
-    /* border: 1px solid red; */
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.form p, .result p {
     text-align: center;
-    font-size: 1.5rem;
+    padding: 50px 20px;
 }
 
-.result p.ket {
-    text-align: start;
-}
-.result p.hasil {
-    text-align: start;
-    font-size: 1.2rem;
-    margin-top: -20px;
-}
-
-.result .sert {
-    /* width: 500px; */
-    border: 2px ridge red;
-    padding: 10px;
-
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #183648;
+    color: #fff;
 }
 
-.result .sert img{
-    width: 600px;
+.navbar .logo img {
+    width: 150px;
 }
 
-button[type="submit"] {
-	background-color: #0071e3;
-	color: #ffffff;
-	border: none;
-	margin-top: 50px;
-	padding: 15px 10px;
-	font-size: 18px;
-	font-weight: 500;
-	border-radius: 8px;
-	cursor: pointer;
-	width: 100%;
-	transition: background-color 0.3s ease;
+.navbar .nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    align-items: center;
 }
 
-input[type="file"] {
-	padding: 12px;
-	width: 100%;
-	margin-bottom: 20px;
-	border: 1px solid #d2d2d7;
-	border-radius: 8px;
-	font-size: 16px;
-	background-color: rgba(
-		255,
-		255,
-		255,
-		0.9
-	); /* Transparansi untuk latar belakang input */
-	color: #1d1d1f;
-	box-sizing: border-box;
-	transition: border-color 0.3s ease;
+.navbar .nav ul li {
+    display: inline;
 }
 
-input[type="file"]:hover {
-	border-color: #0071e3;
+.navbar .nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+/* Adjust layout for mobile screens */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar .nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .container {
+        padding: 30px 10px;
+    }
+
+    .container-cek, .about {
+        padding: 20px 10px;
+    }
+
+    .text h1 {
+        font-size: 24px;
+    }
+
+    .text p {
+        font-size: 16px;
+    }
+
+    .text button {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+
+    .form p {
+        font-size: 16px;
+    }
+
+    .result p {
+        font-size: 16px;
+    }
+
+    .sert img {
+        width: 100%;
+    }
+
+    .about .wrapper {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about .kiri, .about .kanan {
+        width: 100%;
+    }
+
+    .about .kiri img {
+        width: 100%;
+    }
+
+    .about p {
+        font-size: 16px;
+    }
+}
+
+/* Desktop styles */
+@media (min-width: 769px) {
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .container-cek {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .form, .result {
+        width: 48%;
+    }
+
+    .about .wrapper {
+        display: flex;
+        justify-content: space-between;
+        padding: 50px 20px;
+    }
+
+    .about .kiri, .about .kanan {
+        width: 48%;
+    }
+
+    .about p {
+        font-size: 18px;
+    }
+}
+
+/* Button and Image styling */
+button.cek a {
+    color: #fff;
+    text-decoration: none;
 }
 
 button.cek {
-	background-color: #0071e3;
-	color: #ffffff;
-	border: none;
-	margin-top: 50px;
-	padding: 15px 10px;
-	font-size: 18px;
-	font-weight: 500;
-	border-radius: 8px;
-	cursor: pointer;
-	width: 50%;
-	transition: background-color 0.3s ease;
+    padding: 15px 30px;
+    background-color: #183648;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 20px;
 }
 
-button:hover {
-	background-color: #ff5090;
+button.cek:hover {
+    background-color: #116580;
 }
 
-p#status {
-	margin-top: 20px;
-	font-size: 16px;
-	color: #ff3b30;
-	text-align: center;
-	font-weight: 400;
+.result {
+    margin-top: 20px;
 }
 
+.result .sert img {
+    width: 300px;
+    height: auto;
+}
 
-/* about */
+.sertifikatImg {
+    max-width: 100%;
+    height: auto;
+}
 
-.about {
-    height: 400px;
+/* Form Styling */
+form input[type="file"] {
+    font-size: 18px;
+}
+
+form button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #116580;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+form button:hover {
     background-color: #183648;
 }
-.about h5 {
-	text-align: center;
-	font-size: 1.2rem;
-	color: white;
-	margin-top: -5px;
-}
-.about .wrapper {
-	display: flex;
-	/* border: 1px solid red; */
-	gap: 50px;
-}
-.about .wrapper .kiri{
-	/* border: 1px solid red; */
-}
-.about .kiri img {
-	width: 500px;
-}
-.about .wrapper .kanan p {
-	margin-bottom: 50px;
-	color: white;
-}
 
-
-
-
-
-
-
-
-
-
-
-@media (max-width: 768px) {
-	form {
-		padding: 30px 40px;
-	}
-
-	h1 {
-		font-size: 2.5rem;
-	}
-
-	button {
-		font-size: 16px;
-	}
-}
