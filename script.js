@@ -33,22 +33,4 @@ document.getElementById('uploadForm').addEventListener('submit', function(e) {
     }
 
     fileReader.readAsArrayBuffer(inputFile); // Memulai pembacaan file untuk hashing
-
-    function uploadFile() {
-    const input = document.getElementById('fileInput');
-    const file = input.files[0];
-    
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const fileData = e.target.result;
-            localStorage.setItem('uploadedFile', fileData);
-            document.getElementById('message').textContent = 'File berhasil disimpan di local storage.';
-        };
-        reader.readAsDataURL(file);
-    } else {
-        document.getElementById('message').textContent = 'Silakan pilih file terlebih dahulu.';
-    }
-}
-
 });
