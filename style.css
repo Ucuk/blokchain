@@ -107,9 +107,9 @@ button.cek:hover {
 
 .container-cek {
     display: flex;
-    justify-content: space-between; /* Menambahkan jarak antara form dan hasil */
-    align-items: center; /* Vertikal sejajar di tengah */
-    flex-wrap: wrap; /* Jika layar kecil, elemen turun ke bawah */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 20px;
     margin-top: 50px;
     background-color: rgba(255, 255, 255, 0.95);
@@ -120,7 +120,9 @@ button.cek:hover {
 }
 
 .container-cek .form {
-    width: 45%; /* Ukuran form menjadi 45% dari kontainer */
+    width: 80%;
+    max-width: 400px;
+    margin-bottom: 40px;
     background-color: #f9f9f9;
     padding: 20px;
     border-radius: 10px;
@@ -128,13 +130,13 @@ button.cek:hover {
 }
 
 .container-cek .result {
-    width: 45%; /* Ukuran hasil juga 45% dari kontainer */
     text-align: center;
 }
 
 .container-cek .result img {
     width: 100%;
-    max-width: 100%; /* Sesuaikan gambar agar tidak melebihi lebar kontainer */
+    max-width: 600px;
+    margin-bottom: 20px;
     border-radius: 10px;
     border: 2px solid #0071e3;
 }
@@ -212,16 +214,16 @@ button[type="submit"]:hover {
         text-align: left;
     }
 
- .container-cek {
-        flex-direction: row; /* Sejajarkan secara horizontal di layar lebar */
+    .container-cek {
+        flex-direction: row;
         align-items: flex-start;
         padding: 50px;
     }
 
     .container-cek .form, .container-cek .result {
-        width: 50%; /* Bagian form dan hasil masing-masing menempati 50% */
+        width: 50%;
     }
-	
+
     .about .wrapper {
         flex-direction: row;
         text-align: left;
