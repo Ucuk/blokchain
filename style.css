@@ -107,9 +107,9 @@ button.cek:hover {
 
 .container-cek {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-between; /* Memberi jarak di antara form dan hasil */
+    align-items: center; /* Menyejajarkan vertikal di tengah */
+    flex-wrap: wrap; /* Membuat elemen turun ke bawah jika layar sempit */
     padding: 20px;
     margin-top: 50px;
     background-color: rgba(255, 255, 255, 0.95);
@@ -120,9 +120,7 @@ button.cek:hover {
 }
 
 .container-cek .form {
-    width: 80%;
-    max-width: 400px;
-    margin-bottom: 40px;
+    width: 45%; /* Ukuran form 45% dari kontainer */
     background-color: #f9f9f9;
     padding: 20px;
     border-radius: 10px;
@@ -130,13 +128,13 @@ button.cek:hover {
 }
 
 .container-cek .result {
+    width: 45%; /* Ukuran hasil juga 45% dari kontainer */
     text-align: center;
 }
 
-.container-cek .result img {
+.result img {
     width: 100%;
-    max-width: 600px;
-    margin-bottom: 20px;
+    max-width: 100%; /* Sesuaikan ukuran gambar agar tidak melebihi container */
     border-radius: 10px;
     border: 2px solid #0071e3;
 }
