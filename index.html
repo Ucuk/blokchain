@@ -29,6 +29,7 @@
         </div>
     </div>
 
+    <!-- Hero Section -->
     <div class="container">
         <div class="info">
             <img src="blockchain.png" alt="" />
@@ -45,10 +46,10 @@
             </p>
             <button class="cek"><a href="#cek">Cek Sekarang</a></button>
         </div>
-
         <p id="status"></p>
     </div>
 
+    <!-- Wave Separator -->
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
         <path
             fill="#a7d2d8"
@@ -57,9 +58,10 @@
         ></path>
     </svg>
     
-    <!-- Pengecekan -->
+    <!-- Validation Section -->
     <div id="cek" class="container-cek">
         <div class="form">
+            <h3>Validasi Sertifikat</h3>
             <p>Silahkan Masukkan Sertifikat</p>
             <form id="uploadForm">
                 <input
@@ -67,20 +69,23 @@
                     id="sertifikatInput"
                     accept=".pdf,.docx,.jpg,.png"
                     required
-                /><br /><br />
+                />
                 <button id="uploadBtn" type="submit">Upload dan Validasi</button>
             </form>
         </div>
         <div class="result">
-            <p>Result :</p>
+            <h3>Hasil Validasi</h3>
             <div class="sert">
-                <img id="sertifikatImg" src="sert2.jpg" alt="" />
+                <img id="sertifikatImg" src="sert2.jpg" alt="Preview Sertifikat" />
             </div>
-            <p class="ket">Hash MD5: <b id="hashResult">-</b></p>
+            <div class="validation-info">
+                <p class="ket">Hash MD5: <span id="hashResult">-</span></p>
+                <div id="validationStatus"></div>
+            </div>
         </div>
     </div>
 	
-    <!-- about-->
+    <!-- Wave Separator -->
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
         <path
             fill="#183648"
@@ -89,25 +94,27 @@
         ></path>
     </svg>
 
+    <!-- About Section -->
     <div id="about" class="about">
         <h5>About</h5>
         <div class="wrapper">
             <div class="kiri">
-                <img src="about.png" alt="" />
+                <img src="about.png" alt="About Image" />
             </div>
             <div class="kanan">
                 <p>
-                    Sebagai bagian dari mata kuliah Inovasi Teknologi Jurusan Teknik Informatika dan Komputer Univertas Negeri Makassar
+                    Sebagai bagian dari mata kuliah Inovasi Teknologi Jurusan Teknik Informatika 
+                    dan Komputer Universitas Negeri Makassar
                 </p>
                 <p>
-                    
-					Kelompok kami membuat serta merancang sistem yang dapat di manfaatkan oleh semua orang yang terfokus pada sistem blockchain yaitu Sistem Validasi Sertifikat berbasis Blockchain. 
-
+                    Kelompok kami membuat serta merancang sistem yang dapat dimanfaatkan oleh 
+                    semua orang yang terfokus pada sistem blockchain yaitu Sistem Validasi 
+                    Sertifikat berbasis Blockchain.
                 </p>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
-</body>
-</html>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
