@@ -1,56 +1,51 @@
-document.getElementById('uploadForm').addEventListener('submit', function(e) {
+document.getElementById('uploadForm').addEventListener('submit', async function(e) {
     e.preventDefault();
-
-    var inputFile = document.getElementById('sertifikatInput').files[0];
-    if (!inputFile) {
-        alert("Tidak ada file yang dipilih!");
+    
+    const fileInput = document.getElementById('sertifikatInput');
+    const file = fileInput.files[0];
+    
+    if (!file) {
+        alert('Pilih file terlebih dahulu!');
         return;
     }
-
-    var formData = new FormData();
-    formData.append('sertifikat', inputFile);
-
-    // Upload file dan dapatkan hash
-    fetch('upload.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === 'success') {
-            document.getElementById('hashResult').textContent = data.hash;
+    
+    const formData = new FormData();
+    formData.append('sertifikat', file);
+    
+    try {
+        // Upload file
+        const uploadResponse = await fetch('upload.php', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const uploadResult = await uploadResponse.json();
+        
+        if (uploadResult.status === 'success') {
+            document.getElementById('hashResult').textContent = uploadResult.hash;
             
             // Validasi hash
-            return fetch('validate.php', {
+            const validateResponse = await fetch('validate.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: 'hash=' + data.hash
+                body: `hash=${uploadResult.hash}`
             });
+            
+            const validateResult = await validateResponse.json();
+            
+            document.getElementById('validationStatus').textContent = 
+                validateResult.status === 'valid' ? 'Valid' : 'Invalid';
+            document.getElementById('validationStatus').className = 
+                validateResult.status;
+            
+            alert(validateResult.message);
+        } else {
+            alert(uploadResult.message);
         }
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Tampilkan hasil validasi
-        var statusElement = document.createElement('p');
-        statusElement.textContent = data.message;
-        statusElement.className = data.status === 'valid' ? 'valid' : 'invalid';
-        document.querySelector('.result').appendChild(statusElement);
-    })
-    .catch(error => {
+    } catch (error) {
         console.error('Error:', error);
-        alert('Terjadi kesalahan saat upload/validasi file');
-    });
-
-    // Preview gambar tetap sama seperti sebelumnya
-    if (inputFile.type.startsWith("image/")) {
-        var imgReader = new FileReader();
-        imgReader.onload = function(e) {
-            document.getElementById('sertifikatImg').src = e.target.result;
-        };
-        imgReader.readAsDataURL(inputFile);
-    } else {
-        document.getElementById('sertifikatImg').src = "sert2.jpg";
+        alert('Terjadi kesalahan saat memproses file');
     }
 });
