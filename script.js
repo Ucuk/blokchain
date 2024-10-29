@@ -1,36 +1,56 @@
 document.getElementById('uploadForm').addEventListener('submit', function(e) {
-    e.preventDefault(); // Mencegah reload halaman
+    e.preventDefault();
 
-    var inputFile = document.getElementById('sertifikatInput').files[0]; // Mendapatkan file
+    var inputFile = document.getElementById('sertifikatInput').files[0];
     if (!inputFile) {
         alert("Tidak ada file yang dipilih!");
         return;
     }
 
-    var fileReader = new FileReader(); 
+    var formData = new FormData();
+    formData.append('sertifikat', inputFile);
 
-    // Membaca file sebagai array buffer untuk hashing
-    fileReader.onload = function(e) {
-        var arrayBuffer = e.target.result; // Buffer untuk hash
-        var spark = new SparkMD5.ArrayBuffer(); // Inisialisasi SparkMD5
-        
-        spark.append(arrayBuffer); // Tambahkan buffer untuk di-hash
-        var hashHex = spark.end(); // Dapatkan hasil hash MD5
+    // Upload file dan dapatkan hash
+    fetch('upload.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            document.getElementById('hashResult').textContent = data.hash;
+            
+            // Validasi hash
+            return fetch('validate.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'hash=' + data.hash
+            });
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Tampilkan hasil validasi
+        var statusElement = document.createElement('p');
+        statusElement.textContent = data.message;
+        statusElement.className = data.status === 'valid' ? 'valid' : 'invalid';
+        document.querySelector('.result').appendChild(statusElement);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Terjadi kesalahan saat upload/validasi file');
+    });
 
-        document.getElementById('hashResult').textContent = hashHex; // Tampilkan hasil hash
-    };
-
-    // Jika file adalah gambar, tampilkan di halaman
-    var imgElement = document.getElementById('sertifikatImg');
+    // Preview gambar tetap sama seperti sebelumnya
     if (inputFile.type.startsWith("image/")) {
         var imgReader = new FileReader();
         imgReader.onload = function(e) {
-            imgElement.src = e.target.result;
+            document.getElementById('sertifikatImg').src = e.target.result;
         };
-        imgReader.readAsDataURL(inputFile); // Baca gambar sebagai DataURL
+        imgReader.readAsDataURL(inputFile);
     } else {
-        imgElement.src = "sert2.jpg"; // Jika bukan gambar, tampilkan gambar default
+        document.getElementById('sertifikatImg').src = "sert2.jpg";
     }
-
-    fileReader.readAsArrayBuffer(inputFile); // Memulai pembacaan file untuk hashing
 });

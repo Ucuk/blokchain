@@ -166,6 +166,24 @@ button[type="submit"]:hover {
     background-color: #005bb5;
 }
 
+.valid {
+    color: green;
+    font-weight: bold;
+    padding: 10px;
+    background-color: #e8f5e9;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.invalid {
+    color: red;
+    font-weight: bold;
+    padding: 10px;
+    background-color: #ffebee;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
 .about {
     padding: 40px 20px;
     background-color: #183648;
